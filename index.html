@@ -625,21 +625,7 @@
                     <!-- BOTH SIGNATURE BLOCKS STACKED ON THE RIGHT COLUMN -->
                     <div class="p2-signatures-wrapper">
                         
-                        <!-- Left Column: Date & Place -->
-                        <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 15px; padding-bottom: 10px;">
-                            <div class="form-row" style="margin-bottom: 0;">
-                                <span class="form-label" style="min-width: 50px;">তারিখ:</span>
-                                <div class="input-fill" style="max-width: 150px;">
-                                    <input type="text" id="application_date" name="application_date">
-                                </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 0;">
-                                <span class="form-label" style="min-width: 50px;">স্থান:</span>
-                                <div class="input-fill" style="max-width: 150px;">
-                                    <input type="text" id="application_place" name="application_place">
-                                </div>
-                            </div>
-                        </div>
+                        <div class="left-empty-column"></div>
 
                         <!-- Right Column: Both Applicant & Witness Stacked Vertically -->
                         <div class="right-stacked-signatures">
@@ -743,7 +729,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('voterTransferForm');
     var applicantInput = document.getElementById('applicant_name');
     var ackApplicantInput = document.getElementById('ack_applicant_name');
-    var appDateInput = document.getElementById('application_date');
 
     // Prevent form submission on Enter
     if (form) {
@@ -803,9 +788,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Clear linked fields
                 if (ackApplicantInput) ackApplicantInput.value = '';
-
-                // Leave dates blank after reset
-                if (appDateInput) appDateInput.value = '';
             }
         });
     }
