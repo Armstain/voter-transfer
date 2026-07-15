@@ -764,96 +764,101 @@
     </div>
 
     <!-- Live Reactive Data Binding Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var form = document.getElementById('voterTransferForm');
-            var applicantInput = document.getElementById('applicant_name');
-            var ackApplicantInput = document.getElementById('ack_applicant_name');
-            var receiverUpazilaInput = document.getElementById('receiver_upazila');
-            var ackOfficeInput = document.getElementById('ack_office_name');
-            var appDateInput = document.getElementById('application_date');
-            var ackDateInput = document.getElementById('ack_date');
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('voterTransferForm');
+    var applicantInput = document.getElementById('applicant_name');
+    var ackApplicantInput = document.getElementById('ack_applicant_name');
+    var receiverUpazilaInput = document.getElementById('receiver_upazila');
+    var ackOfficeInput = document.getElementById('ack_office_name');
+    var appDateInput = document.getElementById('application_date');
+    var ackDateInput = document.getElementById('ack_date');
 
-            // 1. Prevent form submission on hitting Enter inside inputs
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                });
+    // Prevent form submission on Enter
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+        });
+    }
+
+    // Sync applicant name
+    if (applicantInput && ackApplicantInput) {
+        applicantInput.addEventListener('input', function (e) {
+            ackApplicantInput.value = e.target.value;
+        });
+    }
+
+    // Sync office name
+    if (receiverUpazilaInput && ackOfficeInput) {
+        receiverUpazilaInput.addEventListener('input', function (e) {
+            ackOfficeInput.value = e.target.value;
+        });
+    }
+
+    // Sync dates (without prefilling)
+    if (appDateInput && ackDateInput) {
+        appDateInput.addEventListener('input', function (e) {
+            ackDateInput.value = e.target.value;
+        });
+
+        ackDateInput.addEventListener('input', function (e) {
+            appDateInput.value = e.target.value;
+        });
+    }
+
+    // Print Button & Basic Validation
+    var printBtn = document.getElementById('printBtn');
+    if (printBtn) {
+        printBtn.addEventListener('click', function () {
+            var requiredFields = [
+                { id: 'applicant_name', label: 'আবেদনকারীর নাম' },
+                { id: 'applicant_nid', label: 'জাতীয় পরিচয়পত্র নম্বর (NID)' },
+                { id: 'receiver_upazila', label: 'প্রাপক উপজেলা/থানা' }
+            ];
+
+            var missing = [];
+
+            requiredFields.forEach(function (field) {
+                var el = document.getElementById(field.id);
+                if (el && !el.value.trim()) {
+                    missing.push(field.label);
+                }
+            });
+
+            if (missing.length > 0) {
+                if (
+                    !confirm(
+                        'সতর্কতা: নিম্নলিখিত গুরুত্বপূর্ণ তথ্যগুলো খালি রয়েছে:\n- ' +
+                            missing.join('\n- ') +
+                            '\n\nআপনি কি তবুও প্রিন্ট করতে চান?'
+                    )
+                ) {
+                    return;
+                }
             }
 
-            // 2. Dynamic Input Bindings
-            if (applicantInput && ackApplicantInput) {
-                applicantInput.addEventListener('input', function(e) {
-                    ackApplicantInput.value = e.target.value;
-                });
-            }
+            window.print();
+        });
+    }
 
-            if (receiverUpazilaInput && ackOfficeInput) {
-                receiverUpazilaInput.addEventListener('input', function(e) {
-                    ackOfficeInput.value = e.target.value;
-                });
-            }
+    // Reset Button
+    var resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            if (confirm('আপনি কি নিশ্চিত যে ফরমের সব তথ্য মুছে ফেলতে চান?')) {
+                if (form) form.reset();
 
-            if (appDateInput && ackDateInput) {
-                appDateInput.addEventListener('input', function(e) {
-                    ackDateInput.value = e.target.value;
-                });
-                ackDateInput.addEventListener('input', function(e) {
-                    appDateInput.value = e.target.value;
-                });
-            }
+                // Clear linked fields
+                if (ackApplicantInput) ackApplicantInput.value = '';
+                if (ackOfficeInput) ackOfficeInput.value = '';
 
-            // 3. Set Current Date by default
-            var today = new Date();
-            var day = String(today.getDate()).padStart(2, '0');
-            var month = String(today.getMonth() + 1).padStart(2, '0');
-            var year = today.getFullYear();
-            var formattedDate = day + '/' + month + '/' + year;
-            if (appDateInput) appDateInput.value = formattedDate;
-            if (ackDateInput) ackDateInput.value = formattedDate;
-
-            // 4. Print Button & Basic Validation
-            var printBtn = document.getElementById('printBtn');
-            if (printBtn) {
-                printBtn.addEventListener('click', function() {
-                    var requiredFields = [
-                        { id: 'applicant_name', label: 'আবেদনকারীর নাম' },
-                        { id: 'applicant_nid', label: 'জাতীয় পরিচয়পত্র নম্বর (NID)' },
-                        { id: 'receiver_upazila', label: 'প্রাপক উপজেলা/থানা' }
-                    ];
-                    var missing = [];
-                    requiredFields.forEach(function(field) {
-                        var el = document.getElementById(field.id);
-                        if (el && !el.value.trim()) {
-                            missing.push(field.label);
-                        }
-                    });
-
-                    if (missing.length > 0) {
-                        if (!confirm('সতর্কতা: নিম্নলিখিত গুরুত্বপূর্ণ তথ্যগুলো খালি রয়েছে:\n- ' + missing.join('\n- ') + '\n\nআপনি কি তবুও প্রিন্ট করতে চান?')) {
-                            return;
-                        }
-                    }
-                    window.print();
-                });
-            }
-
-            // 5. Reset Button
-            var resetBtn = document.getElementById('resetBtn');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', function() {
-                    if (confirm('আপনি কি নিশ্চিত যে ফরমের সব তথ্য মুছে ফেলতে চান?')) {
-                        if (form) form.reset();
-                        // Re-bind empty values to dynamically linked fields
-                        if (ackApplicantInput) ackApplicantInput.value = '';
-                        if (ackOfficeInput) ackOfficeInput.value = '';
-                        // Re-apply today's date after reset
-                        if (appDateInput) appDateInput.value = formattedDate;
-                        if (ackDateInput) ackDateInput.value = formattedDate;
-                    }
-                });
+                // Leave dates blank after reset
+                if (appDateInput) appDateInput.value = '';
+                if (ackDateInput) ackDateInput.value = '';
             }
         });
-    </script>
+    }
+});
+</script>
 </body>
 </html>
