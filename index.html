@@ -276,14 +276,12 @@
             display: inline-block;
         }
 
-        /* Office Use Section - Fixed Dotted Lines */
+        /* Office Use Section */
         .office-use-box {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
             padding: 10px 0;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            line-height: 1.8;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            line-height: 2.2;
         }
 
         .office-title {
@@ -293,19 +291,10 @@
             margin-bottom: 6px;
         }
 
-        .dotted-single-line {
-            border: none;
-            border-bottom: 1px dotted var(--border-color);
-            background: transparent;
-            width: 100%;
-            display: inline-block;
-            height: 18px;
-        }
-
         /* Receipt Slip Section */
         .receipt-section {
-            border-top: 2px dashed var(--border-color);
-            padding-top: 12px;
+            border-top: 1.5px dotted var(--border-color);
+            padding-top: 15px;
             position: relative;
         }
 
@@ -313,7 +302,6 @@
             text-align: center;
             font-size: 15.5px;
             font-weight: 700;
-            text-decoration: underline;
             margin-bottom: 10px;
         }
 
@@ -511,7 +499,7 @@
 <div class="section-block" style="margin-top: 12px;">
     <div class="form-row" style="margin-bottom: 6px;">
         <span class="form-label-bold" style="margin-right: 6px;">৫।</span>
-        <span class="form-label-bold" style="text-decoration: underline;">যে এলাকায় স্থানান্তর হইতে ইচ্ছুক-</span>
+        <span class="form-label-bold">যে এলাকায় স্থানান্তর হইতে ইচ্ছুক-</span>
     </div>
 
                             <div class="indented-block grid-2-col">
@@ -690,31 +678,27 @@
                         </div>
                     </div>
 
-                    <!-- Office Use Section - Fixed Dotted Lines (Single Continuous Line) -->
+                    <!-- Office Use Section -->
                     <div class="office-use-box">
                         <p class="office-title">[কেবলমাত্র অফিসে ব্যবহারের জন্য]</p>
-                        <p style="font-size: 13px; margin-bottom: 6px;">দাখিলকৃত দলিলাদি পরীক্ষান্তে</p>
-
-                        <div class="form-row" style="margin-bottom: 4px;">
-                            <span class="form-label" style="margin-right: 4px;">১।</span>
-                            <div class="input-fill" style="max-width: 200px; margin-right: 6px;">
-                                <span class="dotted-single-line"></span>
+                        
+                        <div style="font-size: 13.5px; text-align: justify; text-justify: inter-word; margin-top: 10px;">
+                            <span>দাখিলকৃত দলিলাদি পরীক্ষান্তে</span>
+                            <div style="display: inline-block; width: 280px; margin: 0 4px;">
+                                <input type="text" id="office_voter_area_remove" name="office_voter_area_remove" style="text-align: center;">
                             </div>
-                            <span class="form-label">ভোটার এলাকার জন্য প্রণীত ভোটার তালিকা হইতে নাম কর্তন করা হইল।</span>
-                        </div>
-
-                        <div class="form-row" style="margin-bottom: 0;">
-                            <span class="form-label" style="margin-right: 4px;">২।</span>
-                            <div class="input-fill" style="max-width: 200px; margin-right: 6px;">
-                                <span class="dotted-single-line"></span>
+                            <span>ভোটার এলাকার জন্য প্রণীত ভোটার তালিকা হইতে নাম কর্তন এবং</span>
+                            <div style="display: inline-block; width: 250px; margin: 0 4px;">
+                                <input type="text" id="office_voter_area_add" name="office_voter_area_add" style="text-align: center;">
                             </div>
-                            <span class="form-label">ভোটার এলাকায় নাম অন্তর্ভুক্ত করা হইল।</span>
+                            <span>ভোটার এলাকায় নাম অন্তর্ভুক্ত করা হইল।</span>
                         </div>
 
                         <div class="officer-seal-box">
                             <div class="seal-container">
                                 <div class="seal-line"></div>
-                                <p style="font-weight: 700; font-size: 13px;">উপজেলা/থানা নির্বাচন কর্মকর্তা</p>
+                                <p style="font-weight: 700; font-size: 13.5px; margin: 4px 0;">উপজেলা/থানা নির্বাচন কর্মকর্তা</p>
+                                <div class="seal-line"></div>
                             </div>
                         </div>
                     </div>
@@ -723,36 +707,26 @@
                     <div class="receipt-section">
                         <h2 class="receipt-title">প্রাপ্তিস্বীকার পত্র</h2>
 
-                        <div style="line-height: 2.1; font-size: 13.5px;">
-                            <div style="display: flex; flex-wrap: wrap; align-items: center;">
-                                <span>জনাব/বেগম</span>
-                                <div style="width: 230px; margin: 0 6px;">
-                                    <input type="text" id="ack_applicant_name" style="text-align: center;">
+                        <div style="line-height: 2.2; font-size: 13.5px; margin-top: 15px;">
+                            <div style="display: flex; align-items: center; width: 100%; margin-bottom: 8px;">
+                                <span class="form-label" style="white-space: nowrap;">জনাব/বেগম</span>
+                                <div class="input-fill">
+                                    <input type="text" id="ack_applicant_name" name="ack_applicant_name">
                                 </div>
-                                <span>, আবেদন ফরম নম্বর</span>
-                                <div style="width: 130px; margin: 0 6px;">
-                                    <input type="text" id="ack_form_no" style="text-align: center;">
-                                </div>
+                                <span class="form-label" style="white-space: nowrap; margin-left: 4px;">এর আবেদন ফরম গৃহীত হইল।</span>
                             </div>
-                            <div style="display: flex; flex-wrap: wrap; align-items: center;">
-                                <span>উপজেলা/থানা নির্বাচন কর্মকর্তা</span>
-                                <div style="width: 230px; margin: 0 6px;">
-                                    <input type="text" id="ack_office_name" style="text-align: center;">
+                            <div style="display: flex; align-items: center; width: 100%;">
+                                <span class="form-label" style="white-space: nowrap;">আবেদন ফরম নম্বর</span>
+                                <div class="input-fill">
+                                    <input type="text" id="ack_form_no" name="ack_form_no">
                                 </div>
-                                <span>-এর আবেদন ফরম গৃহীত হইল।</span>
                             </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px;">
-                            <div class="form-row" style="width: auto; margin-bottom: 0; margin-left: 10px;">
-                                <span class="form-label">তারিখ:</span>
-                                <div class="input-fill" style="width: 150px; margin-left: 6px;">
-                                    <input type="text" id="ack_date" name="ack_date" >
-                                </div>
-                            </div>
-                            <div class="seal-container" style="text-align: center; width: 210px;">
+                        <div style="display: flex; justify-content: flex-end; margin-top: 25px;">
+                            <div class="seal-container">
                                 <div class="seal-line"></div>
-                                <p style="font-weight: 700; font-size: 13px;">গ্রহণকারীর স্বাক্ষর</p>
+                                <p style="font-weight: 700; font-size: 13.5px;">গ্রহণকারীর স্বাক্ষর</p>
                             </div>
                         </div>
                     </div>
@@ -769,10 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('voterTransferForm');
     var applicantInput = document.getElementById('applicant_name');
     var ackApplicantInput = document.getElementById('ack_applicant_name');
-    var receiverUpazilaInput = document.getElementById('receiver_upazila');
-    var ackOfficeInput = document.getElementById('ack_office_name');
     var appDateInput = document.getElementById('application_date');
-    var ackDateInput = document.getElementById('ack_date');
 
     // Prevent form submission on Enter
     if (form) {
@@ -785,24 +756,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (applicantInput && ackApplicantInput) {
         applicantInput.addEventListener('input', function (e) {
             ackApplicantInput.value = e.target.value;
-        });
-    }
-
-    // Sync office name
-    if (receiverUpazilaInput && ackOfficeInput) {
-        receiverUpazilaInput.addEventListener('input', function (e) {
-            ackOfficeInput.value = e.target.value;
-        });
-    }
-
-    // Sync dates (without prefilling)
-    if (appDateInput && ackDateInput) {
-        appDateInput.addEventListener('input', function (e) {
-            ackDateInput.value = e.target.value;
-        });
-
-        ackDateInput.addEventListener('input', function (e) {
-            appDateInput.value = e.target.value;
         });
     }
 
@@ -850,11 +803,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Clear linked fields
                 if (ackApplicantInput) ackApplicantInput.value = '';
-                if (ackOfficeInput) ackOfficeInput.value = '';
 
                 // Leave dates blank after reset
                 if (appDateInput) appDateInput.value = '';
-                if (ackDateInput) ackDateInput.value = '';
             }
         });
     }
