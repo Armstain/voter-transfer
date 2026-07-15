@@ -803,16 +803,7 @@
                 });
             }
 
-            // 3. Set Current Date by default
-            var today = new Date();
-            var day = String(today.getDate()).padStart(2, '0');
-            var month = String(today.getMonth() + 1).padStart(2, '0');
-            var year = today.getFullYear();
-            var formattedDate = day + '/' + month + '/' + year;
-            if (appDateInput) appDateInput.value = formattedDate;
-            if (ackDateInput) ackDateInput.value = formattedDate;
-
-            // 4. Print Button & Basic Validation
+            // 3. Print Button & Basic Validation
             var printBtn = document.getElementById('printBtn');
             if (printBtn) {
                 printBtn.addEventListener('click', function() {
@@ -838,7 +829,7 @@
                 });
             }
 
-            // 5. Reset Button
+            // 4. Reset Button
             var resetBtn = document.getElementById('resetBtn');
             if (resetBtn) {
                 resetBtn.addEventListener('click', function() {
@@ -847,9 +838,6 @@
                         // Re-bind empty values to dynamically linked fields
                         if (ackApplicantInput) ackApplicantInput.value = '';
                         if (ackOfficeInput) ackOfficeInput.value = '';
-                        // Re-apply today's date after reset
-                        if (appDateInput) appDateInput.value = formattedDate;
-                        if (ackDateInput) ackDateInput.value = formattedDate;
                     }
                 });
             }
